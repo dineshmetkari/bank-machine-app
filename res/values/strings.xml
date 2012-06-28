@@ -3,5 +3,9 @@
 
     <string name="hello">Hello World, BankMachineActivity! My App</string>
     <string name="app_name">BankMachineApp</string>
+    <string name="displayAccountButton">Display Accounts</string>
+    <string name="debitButton">Debit</string>
+    <string name="setDatesButton">Set Widthrawl Dates</string>
+    <string name="createAccount">Create Account</string>
 
 </resources>
