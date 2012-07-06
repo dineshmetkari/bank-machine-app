@@ -110,7 +110,7 @@ public class BankDbAdpater {
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }*/
     
-    public long createEntry(String accName, String accHolder, int amount){
+    public long createEntry(String accHolder, String accName, int amount){
     	ContentValues initialValues = new ContentValues();
     	//initialValues.put(KEY_ROWID, id);
     	initialValues.put(ACCOUNT_NAME, accName);
@@ -204,6 +204,15 @@ public class BankDbAdpater {
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }*/
     
+    public boolean updateEntry(long rowId, String accHolder, String accName){
+    	ContentValues args = new ContentValues();
+    	args.put(ACCOUNT_HOLDER, accHolder);
+    	args.put(ACCOUNT_NAME, accName);
+    	
+    	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    	
+    }
+    
     public boolean addAmountToEntry(long rowId, int amount){
     	
     	ContentValues args = new ContentValues();
@@ -223,7 +232,7 @@ public class BankDbAdpater {
     	args.put(AMOUNT, amount+iAmount);
     	
     	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
-    }
+    } 
     
   public boolean subAmountToEntry(long rowId, int amount){
     	
