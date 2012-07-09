@@ -152,6 +152,12 @@ public class BankDbAdpater {
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
                 KEY_BODY}, null, null, null, null, null);
     }*/
+    
+    public Cursor fetchAllAccounts(){
+    	
+        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME,
+        		ACCOUNT_HOLDER, AMOUNT}, null, null, null, null, "ACCOUNT_NAME");
+    }
 
     /**
      * Return a Cursor positioned at the note that matches the given rowId

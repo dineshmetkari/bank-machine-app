@@ -1,10 +1,14 @@
 package bank.machine.app;
 
+//import com.android.demo.notepad3.NotesDbAdapter;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 import bank.machine.app.BankDbAdpater;
 
 public class BankMachineAppActivity extends Activity {
@@ -12,7 +16,7 @@ public class BankMachineAppActivity extends Activity {
     private BankDbAdpater mDbHelper;
     private Cursor mNotesCursor;
     
-    private static final int ACTIVITY_CREATE=0;
+    private static final int ACTIVITY_CREATE = 0;
     
     /** Called when the activity is first created. */
     @Override
@@ -23,9 +27,34 @@ public class BankMachineAppActivity extends Activity {
         mDbHelper.open();
     }
     
-    /** Called when the user touches the button */
-    public void createAccountView(View view) {
-        // Do something in response to button click
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        //Bundle extras = intent.getExtras();
+        switch(requestCode) {
+            case ACTIVITY_CREATE:
+            	Context context = getApplicationContext();
+            	CharSequence text = "You have successfully created an account!";
+            	int duration = Toast.LENGTH_SHORT;
+
+            	Toast toast = Toast.makeText(context, text, duration);
+            	toast.show();
+            	/*
+                String title = extras.getString(NotesDbAdapter.KEY_TITLE);
+                String body = extras.getString(NotesDbAdapter.KEY_BODY);
+                mDbHelper.createNote(title, body);
+                fillData();*/
+                break;
+            /*case ACTIVITY_EDIT:
+                Long rowId = extras.getLong(NotesDbAdapter.KEY_ROWID);
+                if (rowId != null) {
+                    String editTitle = extras.getString(NotesDbAdapter.KEY_TITLE);
+                    String editBody = extras.getString(NotesDbAdapter.KEY_BODY);
+                    mDbHelper.updateNote(rowId, editTitle, editBody);
+                }
+                fillData();
+                break;*/
+        }
     }
     
     public void onClick(View v){
