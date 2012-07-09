@@ -28,6 +28,10 @@ public class BankDbAdpater {
     private static final String DATABASE_TABLE = "accounts";
     private static final int DATABASE_VERSION = 2;
     
+    private static final int ADD = 1;
+    private static final int SUB = 2;
+    private static final int NONE = 0;
+    
     private final Context mCtx;
     
     
@@ -211,6 +215,42 @@ public class BankDbAdpater {
     	
     	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     	
+    }
+    
+    public boolean updateEntry(long rowId, int amount, int type){
+    	ContentValues args = new ContentValues();
+    	
+        Cursor mCursor = 
+           		mDb.query(true, DATABASE_TABLE, new String[] {AMOUNT}, KEY_ROWID + "=" + rowId, 
+            			null, null, null, null, null);
+    	if(mCursor != null){
+    		mCursor.moveToFirst();
+    	}
+    		
+    	if(type == ADD){
+    			
+    	    /*if I'm addin amounts, grab the old and add it to make a new*/
+    	    String sAmount = mCursor.getString(0);//should be the first
+    	    
+    	    int iAmount = Integer.parseInt(sAmount); //parse the string
+    	    	
+    	    args.put(AMOUNT, amount+iAmount);
+    	    	
+    	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    	}
+    	else{
+    		//must be subtract
+    			
+    	    /*if I'm addin amounts, grab the old and add it to make a new*/
+    	    String sAmount = mCursor.getString(0); //should be the first
+    	    	
+    	    int iAmount = Integer.parseInt(sAmount); //parse the string
+    	    
+    	    args.put(AMOUNT, amount-iAmount); 
+    	    	
+    	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    	}
+    		
     }
     
     public boolean addAmountToEntry(long rowId, int amount){

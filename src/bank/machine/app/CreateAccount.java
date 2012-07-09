@@ -3,6 +3,8 @@ package bank.machine.app;
 //import com.android.demo.notepad3.NotesDbAdapter;
 //import com.android.demo.notepad3.R;
 
+//import com.android.demo.notepad3.NotesDbAdapter;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +54,19 @@ public class CreateAccount extends Activity {
             }
 
         });
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveState();
+    }
+    
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        saveState();
+        outState.putSerializable(BankDbAdpater.KEY_ROWID, mRowId);
     }
     
     private void saveState() {

@@ -1,6 +1,7 @@
 package bank.machine.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ public class BankMachineAppActivity extends Activity {
 	
     private BankDbAdpater mDbHelper;
     private Cursor mNotesCursor;
+    
+    private static final int ACTIVITY_CREATE=0;
     
     /** Called when the activity is first created. */
     @Override
@@ -42,7 +45,8 @@ public class BankMachineAppActivity extends Activity {
     		break;
     	//createAccont
     	case R.id.button4:
-    		
+    		Intent i = new Intent(this, CreateAccount.class);
+    		startActivityForResult(i, ACTIVITY_CREATE);
     		break;
     	}
     }
