@@ -24,8 +24,8 @@ public class BankDbAdpater {
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
     
-    private static final String DATABASE_NAME = "data";
-    private static final String DATABASE_TABLE = "accounts";
+    public static final String DATABASE_NAME = "data";
+    public static final String DATABASE_TABLE = "accounts";
     private static final int DATABASE_VERSION = 2;
     
     private static final int ADD = 1;
@@ -93,6 +93,11 @@ public class BankDbAdpater {
 
     public void close() {
         mDbHelper.close();
+    }
+    
+    public SQLiteDatabase getReadableDatabase(){
+    	
+    	return mDbHelper.getReadableDatabase();
     }
 
 
