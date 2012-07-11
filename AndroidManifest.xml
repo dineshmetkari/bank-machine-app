@@ -19,6 +19,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateAccount" />
+        <provider
+    android:authorities="com.mamlambo.tutorial.tutlist.data.TutListProvider"
+    android:multiprocess="true"
+    android:name="com.mamlambo.tutorial.tutlist.data.TutListProvider"></provider>
+        
     </application>
 
 </manifest>
