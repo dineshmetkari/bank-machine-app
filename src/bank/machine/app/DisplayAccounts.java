@@ -6,6 +6,7 @@ package bank.machine.app;
 //import com.android.demo.notepad3.R;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -13,46 +14,36 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 
-public class DisplayAccounts extends Activity {
+public class DisplayAccounts extends ListActivity {
 
 	 private BankDbAdpater mDbHelper;
 	 private Cursor mNotesCursor;
 	 
-	@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mDbHelper = new BankDbAdpater(this);
-        mDbHelper.open();
-        setContentView(R.layout.debit_layout);
-        //setTitle(R.string.createAccount);
-        
+	 @Override
+	 public void onCreate(Bundle savedInstance) {
+		 
+	     setContentView(R.layout.display_account_layout);
 
-        mNameText = (EditText) findViewById(R.id.editText1);
-        mAccountText = (EditText) findViewById(R.id.editText3);
+	            // some code
 
-        Button confirmButton = (Button) findViewById(R.id.button1);
+	            Cursor cursor = getContentResolver().query(People.CONTENT_URI, new String[] {People._ID, People.NAME, People.NUMBER}, null, null, null);
+	            startManagingCursor(cursor);
 
-        
-        mRowId = (savedInstanceState == null) ? null :
-            (Long) savedInstanceState.getSerializable(BankDbAdpater.KEY_ROWID);
-        if (mRowId == null) {
-            Bundle extras = getIntent().getExtras();
-            mRowId = extras != null ? extras.getLong(BankDbAdpater.KEY_ROWID)
-                                    : null;
-        }
-        
-        //populateFields();
+	            // the desired columns to be bound
+	            String[] columns = new String[] { People.NAME, People.NUMBER };
+	            // the XML defined views which the data will be bound to
+	            int[] to = new int[] { R.id.name_entry, R.id.number_entry };
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+	            // create the adapter using the cursor pointing to the desired data as well as the layout information
+	            SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(this, R.layout.list_example_entry, cursor, columns, to);
 
-            public void onClick(View view) {
-            	
-            	
-                setResult(RESULT_OK);
-                finish();
-            }
+	            // set this adapter as your ListActivity's adapter
+	            this.setListAdapter(mAdapter);
+	      }
+	}
 
-        });
+
+
     }
 	
     private void fillData() {
