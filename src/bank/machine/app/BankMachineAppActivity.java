@@ -1,7 +1,5 @@
 package bank.machine.app;
 
-//import com.android.demo.notepad3.NotesDbAdapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +15,7 @@ public class BankMachineAppActivity extends Activity {
     private Cursor mNotesCursor;
     
     private static final int ACTIVITY_CREATE = 0;
+    private static final int ACTIVITY_DISPLAY = 1;
     
     /** Called when the activity is first created. */
     @Override
@@ -62,8 +61,10 @@ public class BankMachineAppActivity extends Activity {
     	
     	//display account
     	case R.id.button1:
-    		
+    		Intent dis = new Intent(this, DisplayAccounts.class);
+    		startActivityForResult(dis, ACTIVITY_DISPLAY);
     		break;
+    		
     	//debit button	
     	case R.id.button2:
     		
