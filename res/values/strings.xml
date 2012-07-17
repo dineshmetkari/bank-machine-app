@@ -10,5 +10,7 @@
     <string name="NamePrompt">Enter Name</string>
     <string name="AccountPrompt">Enter Account Name</string>
     <string name="ConfirmButton">Confirm</string>
+    <string name="add">Add</string>
+    <string name="subtract">Sub</string>
 
 </resources>

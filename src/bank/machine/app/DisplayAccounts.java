@@ -39,9 +39,9 @@ public class DisplayAccounts extends ListActivity {
 	    		 startManagingCursor(data);
 
 	            // the desired columns to be bound
-	            String[] columns = new String[] { BankDbAdpater.ACCOUNT_NAME, BankDbAdpater.AMOUNT };
+	            String[] columns = new String[] { BankDbAdpater.ACCOUNT_HOLDER, BankDbAdpater.ACCOUNT_NAME, BankDbAdpater.AMOUNT };
 	            // the XML defined views which the data will be bound to
-	            int[] to = new int[] { R.id.name_entry, R.id.number_entry };
+	            int[] to = new int[] { R.id.name_entry, R.id.account_name_entry, R.id.number_entry };
 
 	            // create the adapter using the cursor pointing to the desired data as well as the layout information
 	            SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(this, R.layout.display_account_ex_layout, data, columns, to);

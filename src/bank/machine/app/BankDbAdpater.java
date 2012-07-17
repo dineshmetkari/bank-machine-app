@@ -126,6 +126,7 @@ public class BankDbAdpater {
     	initialValues.put(ACCOUNT_HOLDER, accHolder);
     	initialValues.put(AMOUNT, amount);
     	
+    		
     	return mDb.insert(DATABASE_TABLE, null, initialValues);
     }
 
@@ -264,45 +265,10 @@ public class BankDbAdpater {
     		
     }
     
-    public boolean addAmountToEntry(long rowId, int amount){
+    //returns the number of rows deleted
+    public int deleteAll(){
     	
-    	ContentValues args = new ContentValues();
-    	Cursor mCursor = 
-        		mDb.query(true, DATABASE_TABLE, new String[] {AMOUNT}, KEY_ROWID + "=" + rowId, 
-        				null, null, null, null, null);
-    	
-    	if(mCursor != null){
-    		mCursor.moveToFirst();
-    	}
-    	
-    	/*if I'm addin amounts, grab the old and add it to make a new*/
-    	String sAmount = mCursor.getString(0);//should be the first
-    	
-    	int iAmount = Integer.parseInt(sAmount); //parse the string
-    	
-    	args.put(AMOUNT, amount+iAmount);
-    	
-    	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
-    } 
-    
-  public boolean subAmountToEntry(long rowId, int amount){
-    	
-    	ContentValues args = new ContentValues();
-    	Cursor mCursor = 
-        		mDb.query(true, DATABASE_TABLE, new String[] {AMOUNT}, KEY_ROWID + "=" + rowId, 
-        				null, null, null, null, null);
-    	
-    	if(mCursor != null){
-    		mCursor.moveToFirst();
-    	}
-    	
-    	/*if I'm addin amounts, grab the old and add it to make a new*/
-    	String sAmount = mCursor.getString(0); //should be the first
-    	
-    	int iAmount = Integer.parseInt(sAmount); //parse the string
-    	
-    	args.put(AMOUNT, amount-iAmount); 
-    	
-    	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    	//putting "1" on the where clause will show how many rows were deleted 
+    	 return mDb.delete(DATABASE_NAME, "1", null);
     }
 }
