@@ -39,27 +39,5 @@ public class DisplayAccounts extends ListActivity {
 
 	            // set this adapter as your ListActivity's adapter
 	            this.setListAdapter(mAdapter);
-	      }
-	}
-
-
-
-    }
-	
-    private void fillData() {
-        // Get all of the rows from the database and create the item list
-        mNotesCursor = mDbHelper.fetchAllAccounts();
-        startManagingCursor(mNotesCursor);
-
-        // Create an array to specify the fields we want to display in the list (only TITLE)
-        String[] from = new String[]{NotesDbAdapter.KEY_TITLE};
-
-        // and an array of the fields we want to bind those fields to (in this case just text1)
-        int[] to = new int[]{R.id.text1};
-
-        // Now create a simple cursor adapter and set it to display
-        SimpleCursorAdapter notes = 
-            new SimpleCursorAdapter(this, R.layout.notes_row, mNotesCursor, from, to);
-        setListAdapter(notes);
-    }
-}
+	 }
+}		
