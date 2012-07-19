@@ -3,15 +3,19 @@ package bank.machine.app;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 
 public class DebitAccount extends Activity {
 
 		private BankDbAdpater mDbHelper;
-		private EditText mNameText;
-		private EditText mAccountText;
-		private Long mRowId;
+		private int selectedAmount;
+		private ArrayAdapter<String> adapter;
 		
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
@@ -19,33 +23,25 @@ public class DebitAccount extends Activity {
 	        mDbHelper = new BankDbAdpater(this);
 	        mDbHelper.open();
 	        setContentView(R.layout.debit_layout);
+
+	        //Button confirmButton = (Button) findViewById(R.id.button1);
+	        Spinner myspinner = (Spinner)findViewById(R.id.spinner1);
 	        
-
-	        mNameText = (EditText) findViewById(R.id.editText1);
-	        mAccountText = (EditText) findViewById(R.id.editText3);
-
-	        Button confirmButton = (Button) findViewById(R.id.button1);
-
 	        
-	        mRowId = (savedInstanceState == null) ? null :
-	            (Long) savedInstanceState.getSerializable(BankDbAdpater.KEY_ROWID);
-	        if (mRowId == null) {
-	            Bundle extras = getIntent().getExtras();
-	            mRowId = extras != null ? extras.getLong(BankDbAdpater.KEY_ROWID)
-	                                    : null;
-	        }
+	        fillSpinner();
 	        
-	        //populateFields();
-
-	        confirmButton.setOnClickListener(new View.OnClickListener() {
-
-	            public void onClick(View view) {
-	            	
-	            	
-	                setResult(RESULT_OK);
-	                finish();
+	        myspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+	            @Override
+	            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+	                Cursor c = (Cursor)parent.getItemAtPosition(pos);
+	                selectedAmount = c.getInt(c.getColumnIndexOrThrow(BankDbAdpater.AMOUNT));
+	                
+	                EditText a = (EditText) findViewById(R.id.editText1);
+	                a.setText(selectedAmount);
 	            }
-
+	            @Override
+	                public void onNothingSelected(AdapterView<?> parent) {
+	            }
 	        });
 	    }
 	    
@@ -60,41 +56,16 @@ public class DebitAccount extends Activity {
 	    	// create an array of the display item we want to bind our data to
 	    	int[] to = new int[]{R.id.spinner1};
 	    	// create simple cursor adapter
+	    	/*
 	    	SimpleCursorAdapter adapter =
 	    	  new SimpleCursorAdapter(this, R.layout.debit_layout, c, from, to );
-	    	adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+	    	adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );*/
 	    	// get reference to our spinner
+	    	adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
 	    	Spinner s = (Spinner) findViewById( R.id.spinner1 );
 	    	s.setAdapter(adapter);
 	    }
 	    
-	    @Override
-	    protected void onPause() {
-	        super.onPause();
-	        saveState();
-	    }
-	    
-	    @Override
-	    protected void onSaveInstanceState(Bundle outState) {
-	        super.onSaveInstanceState(outState);
-	        saveState();
-	        outState.putSerializable(BankDbAdpater.KEY_ROWID, mRowId);
-	    }
-	    
-	    private void saveState() {
-	        String holderName = mNameText.getText().toString();
-	        String accountName = mAccountText.getText().toString();
 
-	        if (mRowId == null) {
-	            long id = mDbHelper.createEntry(holderName, accountName, 0);
-	            if (id > 0) {
-	                mRowId = id;
-	            }
-	        } else {
-	            mDbHelper.updateEntry(mRowId, holderName, accountName);
-	        }
-	    }
-
-	}
 
 }

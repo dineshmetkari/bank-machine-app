@@ -16,6 +16,12 @@ public class BankMachineAppActivity extends Activity {
     
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_DISPLAY = 1;
+    private static final int ACTIVITY_DEBIT = 2;
+    
+    private Context context;
+    private CharSequence text;
+    private int duration;
+    private Toast toast;
     
     /** Called when the activity is first created. */
     @Override
@@ -32,11 +38,11 @@ public class BankMachineAppActivity extends Activity {
         //Bundle extras = intent.getExtras();
         switch(requestCode) {
             case ACTIVITY_CREATE:
-            	Context context = getApplicationContext();
-            	CharSequence text = "You have successfully created an account!";
-            	int duration = Toast.LENGTH_SHORT;
+            	context = getApplicationContext();
+            	text = "You have successfully created an account!";
+            	duration = Toast.LENGTH_SHORT;
 
-            	Toast toast = Toast.makeText(context, text, duration);
+            	toast = Toast.makeText(context, text, duration);
             	toast.show();
             	/*
                 String title = extras.getString(NotesDbAdapter.KEY_TITLE);
@@ -44,15 +50,14 @@ public class BankMachineAppActivity extends Activity {
                 mDbHelper.createNote(title, body);
                 fillData();*/
                 break;
-            /*case ACTIVITY_EDIT:
-                Long rowId = extras.getLong(NotesDbAdapter.KEY_ROWID);
-                if (rowId != null) {
-                    String editTitle = extras.getString(NotesDbAdapter.KEY_TITLE);
-                    String editBody = extras.getString(NotesDbAdapter.KEY_BODY);
-                    mDbHelper.updateNote(rowId, editTitle, editBody);
-                }
-                fillData();
-                break;*/
+            case ACTIVITY_DEBIT:
+            	context = getApplicationContext();
+            	text = "You have successfully made a transaction!";
+            	int duration = Toast.LENGTH_SHORT;
+
+            	toast = Toast.makeText(context, text, duration);
+            	toast.show();
+                break;
         }
     }
     
@@ -67,7 +72,8 @@ public class BankMachineAppActivity extends Activity {
     		
     	//debit button	
     	case R.id.button2:
-    		
+    		Intent deb = new Intent(this, DebitAccount.class);
+    		startActivityForResult(deb, ACTIVITY_DEBIT);
     		break;
     	//set dates button
     	case R.id.button3:
