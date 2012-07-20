@@ -3,6 +3,8 @@ package bank.machine.app;
 //import com.android.demo.notepad3.NotesDbAdapter;
 //import com.android.demo.notepad3.NotesDbAdapter.DatabaseHelper;
 
+import java.util.ArrayList;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -163,6 +165,21 @@ public class BankDbAdpater {
     	
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME,
         		ACCOUNT_HOLDER, AMOUNT}, null, null, null, null, "ACCOUNT_NAME");
+    }
+    
+    public ArrayList<String> fetchAllAccountsToString(){
+    	
+    	ArrayList<String> list = new ArrayList<String>();
+    	
+    	Cursor cursor = mDb.query(DATABASE_TABLE, new String[] {ACCOUNT_NAME}, 
+    			null, null, null, null, null);
+    	
+    	for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+    		   String name = cursor.getString(cursor.getColumnIndex(BankDbAdpater.ACCOUNT_NAME));
+    		   list.add(name);
+    		}
+    	cursor.close();
+    	return list;
     }
 
     /**
