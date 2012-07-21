@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".CreateAccount" />
-        <activity android:name=".DisplayAccounts" />
+		<activity android:name=".DisplayAccounts" />
+		<activity android:name=".DebitAccount"/>
         
     </application>
 
