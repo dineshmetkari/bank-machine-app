@@ -171,12 +171,31 @@ public class BankDbAdpater {
     	
     	ArrayList<String> list = new ArrayList<String>();
     	
-    	Cursor cursor = mDb.query(DATABASE_TABLE, new String[] {ACCOUNT_NAME}, 
+    	Cursor cursor = mDb.query(DATABASE_TABLE, new String[] {ACCOUNT_NAME, AMOUNT}, 
     			null, null, null, null, null);
     	
     	for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
     		   String name = cursor.getString(cursor.getColumnIndex(BankDbAdpater.ACCOUNT_NAME));
+    		   //String amount = cursor.getString(cursor.getColumnIndex(BankDbAdpater.AMOUNT));
+    		   //String[] s = new String[] {name, amount};
     		   list.add(name);
+    		}
+    	cursor.close();
+    	return list;
+    }
+    
+    public ArrayList<String> fetchAllAmountsToString(){
+    	
+    	ArrayList<String> list = new ArrayList<String>();
+    	
+    	Cursor cursor = mDb.query(DATABASE_TABLE, new String[] {AMOUNT}, 
+    			null, null, null, null, null);
+    	
+    	for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+    		   String amount = cursor.getString(cursor.getColumnIndex(BankDbAdpater.AMOUNT));
+    		   //String amount = cursor.getString(cursor.getColumnIndex(BankDbAdpater.AMOUNT));
+    		   //String[] s = new String[] {name, amount};
+    		   list.add(amount);
     		}
     	cursor.close();
     	return list;
