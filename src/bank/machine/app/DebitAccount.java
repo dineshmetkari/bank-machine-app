@@ -32,19 +32,20 @@ public class DebitAccount extends Activity {
 	        
 	        fillSpinner();
 	        
-	        myspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+	        /*myspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	            @Override
 	            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 	                Cursor c = (Cursor)parent.getItemAtPosition(pos);
 	                selectedAmount = c.getInt(c.getColumnIndexOrThrow(BankDbAdpater.AMOUNT));
 	                
 	                EditText a = (EditText) findViewById(R.id.editText1);
-	                //a.setHint(selectedAmount);
+	                a.setHint(selectedAmount);
 	            }
+	            
 	            @Override
 	                public void onNothingSelected(AdapterView<?> parent) {
 	            }
-	        });
+	        });*/
 	    }
 	    
 	    
