@@ -22,7 +22,7 @@ import android.widget.Toast;
 public class DebitAccount extends Activity {
 
 		private BankDbAdpater mDbHelper;
-		private int selectedAmount;
+		//private int selectedAmount;
 		private ArrayAdapter<String> adapter;
 		private ArrayList<Integer> listOfIds;
 		private int globalPosition = 0;
@@ -49,7 +49,8 @@ public class DebitAccount extends Activity {
 	        myspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	            @Override
 	            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-	                Object c = parent.getItemAtPosition(pos);
+	                @SuppressWarnings("unused")
+					Object c = parent.getItemAtPosition(pos);
 	                Log.d("debitAccount", "got here");
 	                List<String> amountList = mDbHelper.fetchAllAmountsToString();
 	                listOfIds = mDbHelper.fetchAllIds();

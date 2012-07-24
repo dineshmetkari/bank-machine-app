@@ -1,10 +1,13 @@
 package bank.machine.app;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import bank.machine.app.BankDbAdpater;
@@ -18,10 +21,8 @@ public class BankMachineAppActivity extends Activity {
     private static final int ACTIVITY_DISPLAY = 1;
     private static final int ACTIVITY_DEBIT = 2;
     
-    private Context context;
-    private CharSequence text;
-    private int duration;
-    private Toast toast;
+    private static final int DELETE_ID = Menu.FIRST;
+    
     
     /** Called when the activity is first created. */
     @Override
@@ -38,12 +39,7 @@ public class BankMachineAppActivity extends Activity {
         //Bundle extras = intent.getExtras();
         switch(requestCode) {
             case ACTIVITY_CREATE:
-            	context = getApplicationContext();
-            	text = "You have successfully created an account!";
-            	duration = Toast.LENGTH_SHORT;
-
-            	toast = Toast.makeText(context, text, duration);
-            	toast.show();
+            	showShortToast("You have successfully created an account!");
             	/*
                 String title = extras.getString(NotesDbAdapter.KEY_TITLE);
                 String body = extras.getString(NotesDbAdapter.KEY_BODY);
@@ -51,14 +47,29 @@ public class BankMachineAppActivity extends Activity {
                 fillData();*/
                 break;
             case ACTIVITY_DEBIT:
-            	context = getApplicationContext();
-            	text = "You have successfully made a transaction!";
-            	int duration = Toast.LENGTH_SHORT;
-
-            	toast = Toast.makeText(context, text, duration);
-            	toast.show();
+            	showShortToast("You have successfully made a transaction!");
                 break;
         }
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        menu.add(0, DELETE_ID, 0, R.string.menuDelete);
+        return true;
+    }
+    
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        switch(item.getItemId()) {
+            case DELETE_ID:
+                int howMany = mDbHelper.deleteAll();
+                
+                showShortToast("You have successfully deleted "+howMany+" accounts");
+                return true;
+        }
+
+        return super.onMenuItemSelected(featureId, item);
     }
     
     public void onClick(View v){
@@ -85,5 +96,19 @@ public class BankMachineAppActivity extends Activity {
     		startActivityForResult(i, ACTIVITY_CREATE);
     		break;
     	}
+    }
+    
+    private void showShortToast(String message){
+       Context context;
+       CharSequence text;
+       int duration;
+       Toast toast;
+       
+   	   context = getApplicationContext();
+   	   text = message;
+   	   duration = Toast.LENGTH_SHORT;
+   	   
+   	   toast = Toast.makeText(context, text, duration);
+   	   toast.show();
     }
 }

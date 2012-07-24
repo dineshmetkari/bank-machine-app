@@ -311,7 +311,7 @@ public class BankDbAdpater {
     	    	
     	    int iAmount = Integer.parseInt(sAmount); //parse the string
     	    
-    	    args.put(AMOUNT, amount-iAmount); 
+    	    args.put(AMOUNT, iAmount-amount); 
     	    	
     	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     	}
@@ -326,6 +326,6 @@ public class BankDbAdpater {
     public int deleteAll(){
     	
     	//putting "1" on the where clause will show how many rows were deleted 
-    	 return mDb.delete(DATABASE_NAME, "1", null);
+    	 return mDb.delete(DATABASE_TABLE, "1", null);
     }
 }
