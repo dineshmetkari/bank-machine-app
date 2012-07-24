@@ -119,9 +119,9 @@ public class DebitAccount extends Activity {
 
 	    	
 	    	// create an array to specify which fields we want to display
-	    	String[] from = new String[]{BankDbAdpater.ACCOUNT_NAME };
+	    	//String[] from = new String[]{BankDbAdpater.ACCOUNT_NAME };
 	    	// create an array of the display item we want to bind our data to
-	    	int[] to = new int[]{R.id.spinner1};
+	    	//int[] to = new int[]{R.id.spinner1};
 	    	// create simple cursor adapter
 	    	/*
 	    	SimpleCursorAdapter adapter =
