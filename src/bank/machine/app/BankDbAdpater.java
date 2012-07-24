@@ -200,6 +200,23 @@ public class BankDbAdpater {
     	cursor.close();
     	return list;
     }
+    
+    public ArrayList<Integer> fetchAllIds(){
+    	
+    	ArrayList<Integer> list = new ArrayList<Integer>();
+    	
+    	Cursor cursor = mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID}, 
+    			null, null, null, null, null);
+    	
+    	for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+ 		   int id = cursor.getInt(cursor.getColumnIndex(BankDbAdpater.KEY_ROWID));
+ 		   list.add(id);
+    	}
+    	
+    	return list;
+ 		   
+ 		   
+    }
 
     /**
      * Return a Cursor positioned at the note that matches the given rowId
@@ -286,7 +303,7 @@ public class BankDbAdpater {
     	    	
     	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     	}
-    	else{
+    	else if (type == SUB){
     		//must be subtract
     			
     	    /*if I'm addin amounts, grab the old and add it to make a new*/
@@ -297,6 +314,10 @@ public class BankDbAdpater {
     	    args.put(AMOUNT, amount-iAmount); 
     	    	
     	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    	}
+    	
+    	else{
+    		return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     	}
     		
     }

@@ -11,13 +11,12 @@
         android:layout_weight="0.01" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editText2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_weight="0.01"
+        android:ems="10"
+        android:inputType="number" />
 
     <RelativeLayout
         android:layout_width="match_parent"
