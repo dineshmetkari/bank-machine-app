@@ -22,6 +22,14 @@
 		<activity android:name=".DisplayAccounts" />
 		<activity android:name=".DebitAccount"/>
         
+		<receiver android:name="AppWidgetProvider" >
+    		<intent-filter>
+        		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    		</intent-filter>
+    		<meta-data android:name="android.appwidget.provider"
+               android:resource="@layout/widget_layout" />
+		</receiver>
+		
     </application>
 
 </manifest>

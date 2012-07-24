@@ -1,7 +1,5 @@
 package bank.machine.app;
 
-//import com.android.demo.notepad3.NotesDbAdapter;
-//import com.android.demo.notepad3.NotesDbAdapter.DatabaseHelper;
 
 import java.util.ArrayList;
 

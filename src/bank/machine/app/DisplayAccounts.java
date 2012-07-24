@@ -1,10 +1,5 @@
 package bank.machine.app;
 
-//import com.android.demo.notepad3.NotesDbAdapter;
-
-//import com.android.demo.notepad3.NotesDbAdapter;
-//import com.android.demo.notepad3.R;
-
 import android.app.ListActivity;
 import android.database.Cursor;
 import android.os.Bundle;
