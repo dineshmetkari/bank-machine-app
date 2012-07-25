@@ -27,7 +27,7 @@
         		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
     		</intent-filter>
     		<meta-data android:name="android.appwidget.provider"
-               android:resource="@layout/widget_layout" />
+               android:resource="@xml/app_widget" />
 		</receiver>
 		
     </application>
