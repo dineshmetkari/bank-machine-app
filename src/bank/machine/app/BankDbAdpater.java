@@ -41,7 +41,7 @@ public class BankDbAdpater {
     private static final String DATABASE_CREATE =
         "create table accounts (_id integer primary key autoincrement, "
         + "account_name text not null, account_holder text not null," 
-        + "amount integer);";
+        + "amount real);";
 
 
     
@@ -119,7 +119,7 @@ public class BankDbAdpater {
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }*/
     
-    public long createEntry(String accHolder, String accName, int amount){
+    public long createEntry(String accHolder, String accName, double amount){
     	ContentValues initialValues = new ContentValues();
     	//initialValues.put(KEY_ROWID, id);
     	initialValues.put(ACCOUNT_NAME, accName);
@@ -280,7 +280,7 @@ public class BankDbAdpater {
     	
     }
     
-    public boolean updateEntry(long rowId, int amount, int type){
+    public boolean updateEntry(long rowId, double amount, int type){
     	ContentValues args = new ContentValues();
     	
         Cursor mCursor = 
@@ -295,8 +295,9 @@ public class BankDbAdpater {
     	    /*if I'm addin amounts, grab the old and add it to make a new*/
     	    String sAmount = mCursor.getString(0);//should be the first
     	    
-    	    int iAmount = Integer.parseInt(sAmount); //parse the string
-    	    	
+    	    //Double.parseDouble(string)
+    	    //int iAmount = Integer.parseInt(sAmount); //parse the string
+    	    double iAmount = Double.parseDouble(sAmount);	
     	    args.put(AMOUNT, amount+iAmount);
     	    	
     	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
@@ -307,8 +308,8 @@ public class BankDbAdpater {
     	    /*if I'm addin amounts, grab the old and add it to make a new*/
     	    String sAmount = mCursor.getString(0); //should be the first
     	    	
-    	    int iAmount = Integer.parseInt(sAmount); //parse the string
-    	    
+    	    //int iAmount = Integer.parseInt(sAmount); //parse the string
+    	    double iAmount = Double.parseDouble(sAmount);
     	    args.put(AMOUNT, iAmount-amount); 
     	    	
     	    return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;

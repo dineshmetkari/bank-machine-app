@@ -64,7 +64,7 @@ public class DebitAccount extends Activity {
 	                public void onNothingSelected(AdapterView<?> parent) {
 	            }
 	        });
-	        
+	        //might want to mimic account creation its smarter
 	        addButton.setOnClickListener(new View.OnClickListener() {
 
 	            public void onClick(View view) {
