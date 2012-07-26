@@ -90,7 +90,8 @@ public class DebitAccount extends Activity {
 	    
 	    private void debitAccount(int type){
         	EditText e = (EditText) findViewById(R.id.editText2);
-        	if(e.getText() == null ){
+        	String what = e.getText().toString();
+        	if(e.getText().toString().equals("")){
         		Toast toast;
         		Context context = getApplicationContext();
         		CharSequence text = "YOU MUST ENTER A BALANCE OR EXIT";
