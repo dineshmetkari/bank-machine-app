@@ -46,7 +46,7 @@ public class DebitAccount extends Activity {
 	        myspinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	            @Override
 	            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-	                @SuppressWarnings("unused")
+	                //@SuppressWarnings("unused")
 					Object c = parent.getItemAtPosition(pos);
 	                Log.d("debitAccount", "got here");
 	                List<String> amountList = mDbHelper.fetchAllAmountsToString();
@@ -103,8 +103,10 @@ public class DebitAccount extends Activity {
         		
         		int rowId = listOfIds.get(globalPosition);
         		 //f = view.getParent().getParent();
-        		int amount = Integer.parseInt(e.getText().toString());
+        		//int amount = Integer.parseInt(e.getText().toString());
+        		double amount = Double.parseDouble(e.getText().toString());
         		mDbHelper.updateEntry(rowId, amount, type);
+        		mDbHelper.close();
         	}
 	    }
 	    private void fillSpinner(){
