@@ -20,6 +20,8 @@ public class BankMachineAppActivity extends Activity {
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_DISPLAY = 1;
     private static final int ACTIVITY_DEBIT = 2;
+    private static final int ACTIVITY_WIDTHDRAWAL = 3;
+    
     
     private static final int DELETE_ID = Menu.FIRST;
     
@@ -49,6 +51,10 @@ public class BankMachineAppActivity extends Activity {
             case ACTIVITY_DEBIT:
             	showShortToast("You have successfully made a transaction!");
                 break;
+                
+            case ACTIVITY_WIDTHDRAWAL:
+            	showShortToast("You have successfully made a widthdrawal date");
+            	break;
         }
     }
     
@@ -88,7 +94,8 @@ public class BankMachineAppActivity extends Activity {
     		break;
     	//set dates button
     	case R.id.button3:
-    		
+    		Intent width = new Intent(this, Widthdrawal.class);
+    		startActivityForResult(width, ACTIVITY_WIDTHDRAWAL);
     		break;
     	//createAccont
     	case R.id.button4:

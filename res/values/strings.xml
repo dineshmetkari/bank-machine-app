@@ -5,7 +5,7 @@
     <string name="app_name">BankMachineApp</string>
     <string name="displayAccountButton">Display Accounts</string>
     <string name="debitButton">Debit</string>
-    <string name="setDatesButton">Set Widthrawl Dates</string>
+    <string name="setDatesButton">Set Widthrawal Dates</string>
     <string name="createAccount">Create Account</string>
     <string name="NamePrompt">Enter Name</string>
     <string name="AccountPrompt">Enter Account Name</string>
@@ -13,5 +13,7 @@
     <string name="add">Add</string>
     <string name="subtract">Sub</string>
     <string name="menuDelete">Delete Accounts</string>
+    <string name="billName">Name of Bill</string>
+    <string name="amount">Amount</string>
 
 </resources>

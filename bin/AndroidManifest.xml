@@ -21,7 +21,16 @@
         <activity android:name=".CreateAccount" />
 		<activity android:name=".DisplayAccounts" />
 		<activity android:name=".DebitAccount"/>
+		<activity android:name=".Widthdrawal"/>
         
+		<receiver android:name="AppWidgetProvider" >
+    		<intent-filter>
+        		<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+    		</intent-filter>
+    		<meta-data android:name="android.appwidget.provider"
+               android:resource="@xml/app_widget" />
+		</receiver>
+		
     </application>
 
 </manifest>

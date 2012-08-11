@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
+        android:layout_height="fill_parent"
+        android:background="@drawable/background" >
 
         <ImageButton
             android:id="@+id/imageButton1"
@@ -10,13 +11,13 @@
             android:src="@drawable/sub_button" />
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spinner3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.48" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/editText4"
             android:layout_width="54dp"
             android:layout_height="wrap_content"
             android:ems="10"
