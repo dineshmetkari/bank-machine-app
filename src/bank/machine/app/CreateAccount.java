@@ -10,7 +10,7 @@ import bank.machine.app.BankDbAdpater;
 public class CreateAccount extends Activity {
 
 	private BankDbAdpater mDbHelper;
-	private EditText mNameText;
+	//private EditText mNameText;
 	private EditText mAccountText;
 	private Long mRowId;
 	
@@ -23,7 +23,7 @@ public class CreateAccount extends Activity {
         setTitle(R.string.createAccount);
         
 
-        mNameText = (EditText) findViewById(R.id.editText1);
+        //mNameText = (EditText) findViewById(R.id.editText1);
         mAccountText = (EditText) findViewById(R.id.editText3);
 
         Button confirmButton = (Button) findViewById(R.id.button1);
@@ -65,16 +65,16 @@ public class CreateAccount extends Activity {
     }
     
     private void saveState() {
-        String holderName = mNameText.getText().toString();
+        //String holderName = mNameText.getText().toString();
         String accountName = mAccountText.getText().toString();
 
         if (mRowId == null) {
-            long id = mDbHelper.createEntry(holderName, accountName, 0);
+            long id = mDbHelper.createEntry(/*holderName,*/ accountName, 0);
             if (id > 0) {
                 mRowId = id;
             }
         } else {
-            mDbHelper.updateEntry(mRowId, holderName, accountName);
+            mDbHelper.updateEntry(mRowId, /*holderName,*/ accountName);
         }
     }
 

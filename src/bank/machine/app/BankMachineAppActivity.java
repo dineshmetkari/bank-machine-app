@@ -15,7 +15,7 @@ import bank.machine.app.BankDbAdpater;
 public class BankMachineAppActivity extends Activity {
 	
     private BankDbAdpater mDbHelper;
-    private Cursor mNotesCursor;
+    //private Cursor mNotesCursor;
     
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_DISPLAY = 1;

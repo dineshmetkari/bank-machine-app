@@ -16,7 +16,7 @@ public class BankDbAdpater {
 
     public static final String KEY_ROWID = "_id";
     public static final String ACCOUNT_NAME = "account_name";
-    public static final String ACCOUNT_HOLDER = "account_holder";
+    //public static final String ACCOUNT_HOLDER = "account_holder";
     public static final String AMOUNT = "amount";
     
     private static final String TAG = "BankDbAdapter";
@@ -26,7 +26,7 @@ public class BankDbAdpater {
     
     public static final String DATABASE_NAME = "data";
     public static final String DATABASE_TABLE = "accounts";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     
     private static final int ADD = 1;
     private static final int SUB = 2;
@@ -40,8 +40,7 @@ public class BankDbAdpater {
      */
     private static final String DATABASE_CREATE =
         "create table accounts (_id integer primary key autoincrement, "
-        + "account_name text not null, account_holder text not null," 
-        + "amount real);";
+        + "account_name text not null, amount real);";
 
 
     
@@ -61,7 +60,7 @@ public class BankDbAdpater {
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS notes");
+            db.execSQL("DROP TABLE IF EXISTS accounts");
             onCreate(db);
         }
     }
@@ -119,11 +118,11 @@ public class BankDbAdpater {
         return mDb.insert(DATABASE_TABLE, null, initialValues);
     }*/
     
-    public long createEntry(String accHolder, String accName, double amount){
+    public long createEntry(/*String accHolder,*/ String accName, double amount){
     	ContentValues initialValues = new ContentValues();
     	//initialValues.put(KEY_ROWID, id);
     	initialValues.put(ACCOUNT_NAME, accName);
-    	initialValues.put(ACCOUNT_HOLDER, accHolder);
+    	//initialValues.put(ACCOUNT_HOLDER, accHolder);
     	initialValues.put(AMOUNT, amount);
     	
     		
@@ -161,8 +160,11 @@ public class BankDbAdpater {
     
     public Cursor fetchAllAccounts(){
     	
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME,
-        		ACCOUNT_HOLDER, AMOUNT}, null, null, null, null, "ACCOUNT_NAME");
+        /*return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME,
+        		ACCOUNT_HOLDER, AMOUNT}, null, null, null, null, "ACCOUNT_NAME");*/
+    	
+    	return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME, AMOUNT}, 
+    			null, null, null, null, "ACCOUNT_NAME");
     }
     
     public ArrayList<String> fetchAllAccountsToString(){
@@ -243,7 +245,7 @@ public class BankDbAdpater {
     	Cursor mCursor = 
     		
     		mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-    				ACCOUNT_NAME, ACCOUNT_HOLDER, AMOUNT }, KEY_ROWID + "=" + rowId, null, null, null, null, null);
+    				ACCOUNT_NAME, AMOUNT }, KEY_ROWID + "=" + rowId, null, null, null, null, null);
     	
     	if(mCursor != null){
     		mCursor.moveToFirst();
@@ -271,9 +273,9 @@ public class BankDbAdpater {
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }*/
     
-    public boolean updateEntry(long rowId, String accHolder, String accName){
+    public boolean updateEntry(long rowId,/*String accHolder,*/ String accName){
     	ContentValues args = new ContentValues();
-    	args.put(ACCOUNT_HOLDER, accHolder);
+    	//args.put(ACCOUNT_HOLDER, accHolder);
     	args.put(ACCOUNT_NAME, accName);
     	
     	return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;

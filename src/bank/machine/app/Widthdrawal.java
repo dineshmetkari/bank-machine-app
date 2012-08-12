@@ -47,7 +47,7 @@ public class Widthdrawal extends Activity {
     	adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );*/
     	// get reference to our spinner
     	adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
-    	Spinner s = (Spinner) findViewById( R.id.spinner1 );
+    	Spinner s = (Spinner) findViewById( R.id.spinner2 );
     	//adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
     	s.setAdapter(adapter);
     }
