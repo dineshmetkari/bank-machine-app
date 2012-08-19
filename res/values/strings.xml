@@ -15,5 +15,6 @@
     <string name="menuDelete">Delete Accounts</string>
     <string name="billName">Name of Bill</string>
     <string name="amount">Amount</string>
+    <string name="dateButton">Enter a Date</string>
 
 </resources>

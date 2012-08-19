@@ -11,12 +11,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class BankDbAdpater {
+public class BankDbAdpater{
 
 
     public static final String KEY_ROWID = "_id";
     public static final String ACCOUNT_NAME = "account_name";
-    //public static final String ACCOUNT_HOLDER = "account_holder";
     public static final String AMOUNT = "amount";
     
     private static final String TAG = "BankDbAdapter";
@@ -26,7 +25,7 @@ public class BankDbAdpater {
     
     public static final String DATABASE_NAME = "data";
     public static final String DATABASE_TABLE = "accounts";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     
     private static final int ADD = 1;
     private static final int SUB = 2;
@@ -92,6 +91,7 @@ public class BankDbAdpater {
 
     public void close() {
         mDbHelper.close();
+        mDb.close(); //is this necessary
     }
     
     public SQLiteDatabase getReadableDatabase(){
@@ -109,14 +109,6 @@ public class BankDbAdpater {
      * @param body the body of the note
      * @return rowId or -1 if failed
      */
-    /*
-    public long createNote(String title, String body) {
-        ContentValues initialValues = new ContentValues();
-        initialValues.put(KEY_TITLE, title);
-        initialValues.put(KEY_BODY, body);
-
-        return mDb.insert(DATABASE_TABLE, null, initialValues);
-    }*/
     
     public long createEntry(/*String accHolder,*/ String accName, double amount){
     	ContentValues initialValues = new ContentValues();
@@ -127,6 +119,7 @@ public class BankDbAdpater {
     	
     		
     	return mDb.insert(DATABASE_TABLE, null, initialValues);
+    	//return mDb.insert(CALENDAR_TABLE, null, initialValues);
     }
 
     /**
@@ -135,11 +128,7 @@ public class BankDbAdpater {
      * @param rowId id of note to delete
      * @return true if deleted, false otherwise
      */
-    /*
-    public boolean deleteNote(long rowId) {
 
-        return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
-    }*/
     
     public boolean deleteEntry(long rowId){
     	
@@ -151,12 +140,6 @@ public class BankDbAdpater {
      * 
      * @return Cursor over all notes
      */
-    /*
-    public Cursor fetchAllNotes() {
-
-        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_BODY}, null, null, null, null, null);
-    }*/
     
     public Cursor fetchAllAccounts(){
     	
@@ -213,9 +196,7 @@ public class BankDbAdpater {
  		   list.add(id);
     	}
     	
-    	return list;
- 		   
- 		   
+    	return list;	   
     }
 
     /**
@@ -225,20 +206,6 @@ public class BankDbAdpater {
      * @return Cursor positioned to matching note, if found
      * @throws SQLException if note could not be found/retrieved
      */
-    /*
-    public Cursor fetchNote(long rowId) throws SQLException {
-
-        Cursor mCursor =
-
-            mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_TITLE, KEY_BODY}, KEY_ROWID + "=" + rowId, null,
-                    null, null, null, null);
-        if (mCursor != null) {
-            mCursor.moveToFirst();
-        }
-        return mCursor;
-
-    }*/
     
     public Cursor getEntry(long rowId) throws SQLException {
     	
@@ -264,14 +231,6 @@ public class BankDbAdpater {
      * @param body value to set note body to
      * @return true if the note was successfully updated, false otherwise
      */
-    /*
-    public boolean updateNote(long rowId, String title, String body) {
-        ContentValues args = new ContentValues();
-        args.put(KEY_TITLE, title);
-        args.put(KEY_BODY, body);
-
-        return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
-    }*/
     
     public boolean updateEntry(long rowId,/*String accHolder,*/ String accName){
     	ContentValues args = new ContentValues();
