@@ -7,14 +7,14 @@ import android.widget.SimpleCursorAdapter;
 
 public class DisplayAccounts extends ListActivity {
 
-	 private BankDbAdpater mDbHelper;
+	 private BankDbAdapter mDbHelper;
 	 @Override
 	 public void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
 		 //setContentView(R.layout.create_account);
 	     setContentView(R.layout.display_account_layout);
 	     
-	     mDbHelper = new BankDbAdpater(this);
+	     mDbHelper = new BankDbAdapter(this);
          mDbHelper.open();
 	     //database = mDbHelper.getReadableDatabase();
 	            // some code
@@ -23,7 +23,7 @@ public class DisplayAccounts extends ListActivity {
 	    		 startManagingCursor(data);
 
 	            // the desired columns to be bound
-	            String[] columns = new String[] {BankDbAdpater.ACCOUNT_NAME, BankDbAdpater.AMOUNT };
+	            String[] columns = new String[] {BankDbAdapter.ACCOUNT_NAME, BankDbAdapter.AMOUNT };
 	            // the XML defined views which the data will be bound to
 	            int[] to = new int[] {R.id.account_name_entry, R.id.number_entry };
 

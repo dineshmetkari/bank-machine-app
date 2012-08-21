@@ -74,10 +74,7 @@ public class Widthdrawal extends Activity {
             	if(!billName.getText().toString().equals("") &&
             	    !amount.getText().toString().equals("") && cMonth != -1 ||
             	    cDay != -1 || cYear != -1){
-            		
-            		int a = cDay;
-            		int b = cMonth;
-            		int c = cYear;
+
             		setWidthdrawalDate(selectedAccount, billName.getText().toString(), 
             				cYear+"-"+cMonth+"-"+cDay, 
             				Double.parseDouble(amount.getText().toString()));
@@ -128,16 +125,12 @@ public class Widthdrawal extends Activity {
     }
     
     private void fillSpinner(){
-   	 
-    	//Cursor c = mDbHelper.fetchAllAccounts();
-    	//startManagingCursor(c);
     	 
     	List<String>list = mDbHelper.fetchAllAccountsToString();
 
     	// get reference to our spinner
     	adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, list);
     	Spinner s = (Spinner) findViewById( R.id.spinner2 );
-    	//adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
     	s.setAdapter(adapter);
     }
 }

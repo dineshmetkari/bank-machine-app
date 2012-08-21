@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 public class DebitAccount extends Activity {
 
-		private BankDbAdpater mDbHelper;
+		private BankDbAdapter mDbHelper;
 		//private int selectedAmount;
 		private ArrayAdapter<String> adapter;
 		private ArrayList<Integer> listOfIds;
@@ -30,7 +30,7 @@ public class DebitAccount extends Activity {
 	    @Override
 	    protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
-	        mDbHelper = new BankDbAdpater(this);
+	        mDbHelper = new BankDbAdapter(this);
 	        mDbHelper.open();
 	        setContentView(R.layout.debit_layout);
 
@@ -52,7 +52,7 @@ public class DebitAccount extends Activity {
 	                List<String> amountList = mDbHelper.fetchAllAmountsToString();
 	                listOfIds = mDbHelper.fetchAllIds();
 	                String selectedAmount = amountList.get(pos);
-	                //selectedAmount = c.getInt(c.getColumnIndexOrThrow(BankDbAdpater.AMOUNT));
+	                //selectedAmount = c.getInt(c.getColumnIndexOrThrow(BankDbAdapter.AMOUNT));
 	                
 	                EditText a = (EditText) findViewById(R.id.editText2);
 	                a.setHint(selectedAmount);

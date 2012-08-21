@@ -5,11 +5,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import bank.machine.app.BankDbAdpater;
+import bank.machine.app.BankDbAdapter;
 
 public class CreateAccount extends Activity {
 
-	private BankDbAdpater mDbHelper;
+	private BankDbAdapter mDbHelper;
 	//private EditText mNameText;
 	private EditText mAccountText;
 	private Long mRowId;
@@ -17,7 +17,7 @@ public class CreateAccount extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDbHelper = new BankDbAdpater(this);
+        mDbHelper = new BankDbAdapter(this);
         mDbHelper.open();
         setContentView(R.layout.create_account);
         setTitle(R.string.createAccount);
@@ -30,10 +30,10 @@ public class CreateAccount extends Activity {
 
         
         mRowId = (savedInstanceState == null) ? null :
-            (Long) savedInstanceState.getSerializable(BankDbAdpater.KEY_ROWID);
+            (Long) savedInstanceState.getSerializable(BankDbAdapter.KEY_ROWID);
         if (mRowId == null) {
             Bundle extras = getIntent().getExtras();
-            mRowId = extras != null ? extras.getLong(BankDbAdpater.KEY_ROWID)
+            mRowId = extras != null ? extras.getLong(BankDbAdapter.KEY_ROWID)
                                     : null;
         }
         
@@ -61,7 +61,7 @@ public class CreateAccount extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         saveState();
-        outState.putSerializable(BankDbAdpater.KEY_ROWID, mRowId);
+        outState.putSerializable(BankDbAdapter.KEY_ROWID, mRowId);
     }
     
     private void saveState() {

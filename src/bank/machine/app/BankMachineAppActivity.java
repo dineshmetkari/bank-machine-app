@@ -4,18 +4,16 @@ package bank.machine.app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import bank.machine.app.BankDbAdpater;
+import bank.machine.app.BankDbAdapter;
 
 public class BankMachineAppActivity extends Activity {
 	
-    private BankDbAdpater mDbHelper;
-    //private Cursor mNotesCursor;
+    private BankDbAdapter mDbHelper;
     
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_DISPLAY = 1;
@@ -31,7 +29,7 @@ public class BankMachineAppActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        mDbHelper = new BankDbAdpater(this);
+        mDbHelper = new BankDbAdapter(this);
         mDbHelper.open();
     }
     
@@ -42,11 +40,6 @@ public class BankMachineAppActivity extends Activity {
         switch(requestCode) {
             case ACTIVITY_CREATE:
             	showShortToast("You have successfully created an account!");
-            	/*
-                String title = extras.getString(NotesDbAdapter.KEY_TITLE);
-                String body = extras.getString(NotesDbAdapter.KEY_BODY);
-                mDbHelper.createNote(title, body);
-                fillData();*/
                 break;
             case ACTIVITY_DEBIT:
             	showShortToast("You have successfully made a transaction!");
