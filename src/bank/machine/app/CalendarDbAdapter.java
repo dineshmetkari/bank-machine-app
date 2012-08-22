@@ -30,5 +30,11 @@ public class CalendarDbAdapter extends AbstractDbAdapter{
     	return mDb.insert(CALENDAR_TABLE, null, initialValues);
     }
     
+    //returns the number of rows deleted
+    public int deleteAll(){
+    	
+    	//putting "1" on the where clause will show how many rows were deleted 
+    	 return mDb.delete(CALENDAR_TABLE, "1", null);
+    }
 
 }

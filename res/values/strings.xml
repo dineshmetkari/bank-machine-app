@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello World, BankMachineActivity! My App</string>
-    <string name="app_name">BankMachineApp</string>
+    <string name="app_name">Expense Tracker</string>
     <string name="displayAccountButton">Display Accounts</string>
     <string name="debitButton">Debit</string>
     <string name="setDatesButton">Set Widthrawal Dates</string>
@@ -16,5 +16,6 @@
     <string name="billName">Name of Bill</string>
     <string name="amount">Amount</string>
     <string name="dateButton">Enter a Date</string>
+    <string name="menuDelete2">Delete Widthdrawals</string>
 
 </resources>

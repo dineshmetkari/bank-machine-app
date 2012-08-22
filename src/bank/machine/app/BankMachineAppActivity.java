@@ -13,7 +13,8 @@ import bank.machine.app.BankDbAdapter;
 
 public class BankMachineAppActivity extends Activity {
 	
-    private BankDbAdapter mDbHelper;
+    private BankDbAdapter mDbHelper_bank;
+    private CalendarDbAdapter mDbHelper_calendar;
     
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_DISPLAY = 1;
@@ -21,16 +22,18 @@ public class BankMachineAppActivity extends Activity {
     private static final int ACTIVITY_WIDTHDRAWAL = 3;
     
     
-    private static final int DELETE_ID = Menu.FIRST;
-    
+    private static final int DELETE_ACCOUNT_ID = Menu.FIRST;
+    private static final int DELETE_CALENDAR_ID = Menu.FIRST+1;
     
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        mDbHelper = new BankDbAdapter(this);
-        mDbHelper.open();
+        mDbHelper_bank = new BankDbAdapter(this);
+        mDbHelper_calendar = new CalendarDbAdapter(this);
+        mDbHelper_bank.open();
+        mDbHelper_calendar.open();
     }
     
     @Override
@@ -54,16 +57,24 @@ public class BankMachineAppActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, DELETE_ID, 0, R.string.menuDelete);
+        menu.add(0, DELETE_ACCOUNT_ID, 0, R.string.menuDelete);
+        menu.add(0, DELETE_CALENDAR_ID, 1, R.string.menuDelete2);
         return true;
     }
     
     @Override
     public boolean onMenuItemSelected(int featureId, MenuItem item) {
+    	int howMany = 0;
         switch(item.getItemId()) {
-            case DELETE_ID:
-                int howMany = mDbHelper.deleteAll();
+            case DELETE_ACCOUNT_ID:
+                howMany = mDbHelper_bank.deleteAll();
                 
+                showShortToast("You have successfully deleted "+howMany+" accounts");
+                return true;
+                
+            case DELETE_CALENDAR_ID:
+            	howMany = mDbHelper_calendar.deleteAll();
+            	
                 showShortToast("You have successfully deleted "+howMany+" accounts");
                 return true;
         }
