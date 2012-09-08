@@ -48,6 +48,18 @@ public class BankDbAdapter extends AbstractDbAdapter{
     }
 
     /**
+     * Return a Cursor over the list of all notes in the database
+     * 
+     * @return Cursor over all notes
+     */
+    
+    public Cursor fetchAllAccounts(){
+    	
+    	return mDb.query(ACCOUNT_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME, AMOUNT}, 
+    			null, null, null, null, "ACCOUNT_NAME");
+    }
+    
+    /**
      * Delete the note with the given rowId
      * 
      * @param rowId id of note to delete
@@ -60,17 +72,7 @@ public class BankDbAdapter extends AbstractDbAdapter{
     	return mDb.delete(ACCOUNT_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    /**
-     * Return a Cursor over the list of all notes in the database
-     * 
-     * @return Cursor over all notes
-     */
-    
-    public Cursor fetchAllAccounts(){
-    	
-    	return mDb.query(ACCOUNT_TABLE, new String[] {KEY_ROWID, ACCOUNT_NAME, AMOUNT}, 
-    			null, null, null, null, "ACCOUNT_NAME");
-    }
+
     
     /**
      * Return a Cursor positioned at the note that matches the given rowId

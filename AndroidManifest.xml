@@ -22,6 +22,7 @@
 		<activity android:name=".DisplayAccounts" />
 		<activity android:name=".DebitAccount"/>
 		<activity android:name=".Widthdrawal"/>
+		<activity android:name=".DisplayWidthdrawals"/>
         
 		<receiver android:name=".AppWidgetConfigure" 
 		    	  android:label="@string/app_name">

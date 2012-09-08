@@ -17,5 +17,6 @@
     <string name="amount">Amount</string>
     <string name="dateButton">Enter a Date</string>
     <string name="menuDelete2">Delete Widthdrawals</string>
+    <string name="displayWidthdrawalButton">Display Widthdrawals</string>
 
 </resources>

@@ -26,13 +26,14 @@
             android:layout_alignLeft="@+id/imageButton1"
             android:layout_alignParentTop="true"
             android:src="@drawable/new_title" />
-
+
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/imageButton1"
             android:layout_toRightOf="@+id/imageButton1"
+            android:onClick="clickActivity"
             android:text="@string/AccountPrompt" />
 
         <TextView

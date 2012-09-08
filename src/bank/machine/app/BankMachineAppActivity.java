@@ -20,6 +20,7 @@ public class BankMachineAppActivity extends Activity {
     private static final int ACTIVITY_DISPLAY = 1;
     private static final int ACTIVITY_DEBIT = 2;
     private static final int ACTIVITY_WIDTHDRAWAL = 3;
+    private static final int ACTIVITY_DIS_WIDTHDRAWAL = 4;
     
     
     private static final int DELETE_ACCOUNT_ID = Menu.FIRST;
@@ -51,6 +52,7 @@ public class BankMachineAppActivity extends Activity {
             case ACTIVITY_WIDTHDRAWAL:
             	showShortToast("You have successfully made a widthdrawal date");
             	break;
+            	
         }
     }
     
@@ -68,13 +70,11 @@ public class BankMachineAppActivity extends Activity {
         switch(item.getItemId()) {
             case DELETE_ACCOUNT_ID:
                 howMany = mDbHelper_bank.deleteAll();
-                
                 showShortToast("You have successfully deleted "+howMany+" accounts");
                 return true;
                 
             case DELETE_CALENDAR_ID:
             	howMany = mDbHelper_calendar.deleteAll();
-            	
                 showShortToast("You have successfully deleted "+howMany+" accounts");
                 return true;
         }
@@ -105,6 +105,11 @@ public class BankMachineAppActivity extends Activity {
     	case R.id.button4:
     		Intent i = new Intent(this, CreateAccount.class);
     		startActivityForResult(i, ACTIVITY_CREATE);
+    		break;
+    		
+    	case R.id.button5:
+    		Intent disWidth = new Intent(this, DisplayWidthdrawals.class);
+    		startActivityForResult(disWidth, ACTIVITY_DIS_WIDTHDRAWAL);
     		break;
     	}
     }

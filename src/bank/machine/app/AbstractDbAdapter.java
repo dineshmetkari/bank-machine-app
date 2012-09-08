@@ -35,7 +35,7 @@ public abstract class AbstractDbAdapter {
 
 
     protected static final String DATABASE_NAME = "data";
-    protected static final int DATABASE_VERSION = 1;
+    protected static final int DATABASE_VERSION = 2;
 
     protected final Context mCtx;
 
@@ -79,6 +79,7 @@ public abstract class AbstractDbAdapter {
     	
     	return mDbHelper.getReadableDatabase();
     }
+        
     
     public ArrayList<String> fetchAllAmountsToString(){
     	
